@@ -45,6 +45,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    text-transform: capitalize;
 }
 
 .card-description{

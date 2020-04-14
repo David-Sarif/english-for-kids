@@ -1,4 +1,4 @@
-import cardsArray from './module.js';
+import cardsArray from './cards.js';
 
 const cardsContainer = document.getElementById('cards-container');
 
@@ -14,4 +14,4 @@ for (const elem of cardsArray) {
   </div>
   </img>`;
   cardsContainer.appendChild(card);
-};
+}
