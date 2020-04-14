@@ -1,0 +1,56 @@
+body{
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+}
+
+.visually-hidden{
+    display:none
+}
+.wrapper{
+    background-color: #daf9ff;
+    width: 80vw;
+    margin: 0 auto
+}
+
+.card{
+    width: 250px;
+    height: 290px;
+    background-color: lightcoral;
+    margin: calc((80% - 250px) / 24);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 3px solid rgb(217, 221, 10);
+    border-radius: 15px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.28), 0 10px 10px rgba(0,0,0,0.28);
+    /* transform: scale(-1, 1); */
+    /* transform: rotateY(60deg); */
+    /* background-image: url('./cards/Коты/22891bffd889a73345c3502aca2c2fed.jpg'); */
+}
+.card:hover{
+    box-shadow: 5px 19px 28px rgba(0,0,0,0.4), 5px 15px 10px rgba(0,0,0,0.4);
+    /* opacity: 0; */
+}
+.card-image{
+    width: 244px;
+    height: 250px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-description{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 2;
+    font-size: 2em;
+}
