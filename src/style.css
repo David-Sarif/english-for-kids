@@ -26,6 +26,7 @@ body{
     border: 3px solid rgb(217, 221, 10);
     border-radius: 15px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.28), 0 10px 10px rgba(0,0,0,0.28);
+    user-select: none;
     /* transform: scale(-1, 1); */
     /* transform: rotateY(60deg); */
     /* background-image: url('./cards/Коты/22891bffd889a73345c3502aca2c2fed.jpg'); */
@@ -54,4 +55,9 @@ body{
     align-items: center;
     flex-grow: 2;
     font-size: 2em;
+}
+.categories_card .material-icons{
+    display: none;
+
+
 }
