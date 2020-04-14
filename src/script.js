@@ -1,8 +1,6 @@
 import cardsArray from './cards.js';
 
 const cardsContainer = document.getElementById('cards-container');
-
-
 const drawCards = function (cards) {
   cardsContainer.innerHTML = '';
   // eslint-disable-next-line no-restricted-syntax
@@ -25,14 +23,12 @@ const drawCards = function (cards) {
 };
 drawCards(cardsArray.filter((card) => card.category === 'categories'));
 
-
 cardsContainer.addEventListener('click', (event) => {
   if (event.target.closest('card')) {
-
     const chosenCard = event.target.closest('card').id;
     // Add checking if it is start page
+    // лучше проверять через GameStatus.startPage
     drawCards(cardsArray.filter((card) => card.category === chosenCard));
 
   }
-
 })

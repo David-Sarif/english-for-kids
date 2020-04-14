@@ -347,7 +347,7 @@ const cardsArray = [
     name: 'radish',
     img: './src/cards/vegetables/radish.jpg',
     nameRus: 'Редис',
-    nameEng: 'pumpkin',
+    nameEng: 'radish',
     audio: './src/cards/food/mp3/radish.mp3',
     category: 'vegetables',
   },
