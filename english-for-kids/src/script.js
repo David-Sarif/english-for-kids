@@ -66,5 +66,5 @@ nav.addEventListener('click', (event) =>{
 })
 
 toggleNavLabel.addEventListener('click', (event) =>{
-  nav.classList.toggle('visually-hidden')
+  nav.classList.toggle('nav-opened')
 })

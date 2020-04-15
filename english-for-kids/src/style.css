@@ -227,13 +227,18 @@ nav{
   width: 350px;
     position: fixed;
     /* top: 67px; */
-    /* left: 0; */
+    left: -400px;
     height: 100%;
     background-color: #2d303a;
     /* display: none; */
     /* z-index: 5; */
-    /* transition: width 2s;
+    /* 
     animation: width 2s; */
+    transition: left 2s;
+}
+.nav-opened{
+  left: 0px;
+  transition: left 2s;
 }
 
 .nav-element{
@@ -257,12 +262,12 @@ nav{
     border: 2px solid wheat;
     margin-right: 10px;
 }
-/* 
-@keyframes width {
+
+/* @keyframes width {
   from {
-    width: 100%;
+    left: 100%;
   }
   to {
-    width: 0px;
+    left: 0px;
   }
-} */
+}  */
