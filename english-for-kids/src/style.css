@@ -1,63 +1,171 @@
-body{
-    height: 100vh;
-    font-family: 'Roboto', sans-serif;
-    font-size: 10px;
+body {
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
 }
 
-.visually-hidden{
-    display:none
+.visually-hidden {
+  display: none;
 }
-.wrapper{
-    background-color: #daf9ff;
-    width: 80vw;
-    margin: 0 auto
-}
-
-.card{
-    width: 250px;
-    height: 290px;
-    background-color: lightcoral;
-    margin: calc((80% - 250px) / 24);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    border: 3px solid rgb(217, 221, 10);
-    border-radius: 15px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.28), 0 10px 10px rgba(0,0,0,0.28);
-    user-select: none;
-    /* transform: scale(-1, 1); */
-    /* transform: rotateY(60deg); */
-    /* background-image: url('./cards/Коты/22891bffd889a73345c3502aca2c2fed.jpg'); */
-}
-.card:hover{
-    box-shadow: 5px 19px 28px rgba(0,0,0,0.4), 5px 15px 10px rgba(0,0,0,0.4);
-    /* opacity: 0; */
-}
-.card-image{
-    width: 244px;
-    height: 250px;
-    border-radius: 10px;
-    box-sizing: border-box;
+.wrapper {
+  background-color: #daf9ff;
+  width: 80vw;
+  margin: 0 auto;
 }
 
-.cards-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-transform: capitalize;
+.card {
+  width: 250px;
+  height: 290px;
+  background-color: lightcoral;
+  margin: calc((80% - 250px) / 24);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border: 3px solid rgb(217, 221, 10);
+  border-radius: 15px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28), 0 10px 10px rgba(0, 0, 0, 0.28);
+  user-select: none;
+  /* transform: scale(-1, 1); */
+  /* transform: rotateY(60deg); */
+  /* background-image: url('./cards/Коты/22891bffd889a73345c3502aca2c2fed.jpg'); */
+}
+.card:hover {
+  box-shadow: 5px 19px 28px rgba(0, 0, 0, 0.4), 5px 15px 10px rgba(0, 0, 0, 0.4);
+  /* opacity: 0; */
+}
+.card-image {
+  width: 244px;
+  height: 250px;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
-.card-description{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-grow: 2;
-    font-size: 2em;
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-transform: capitalize;
 }
-.categories_card .material-icons{
-    display: none;
+
+.card-description {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 2;
+  font-size: 2em;
+}
+.categories_card .material-icons {
+  display: none;
+}
 
 
+.toggle-button--aava label {
+  height: 50px;
+  line-height: 50px;
+  transition: all 0.2s;
+  border-radius: 2rem;
+}
+.toggle-button--aava label:before,
+.toggle-button--aava label:after {
+  position: absolute;
+  right: 1.5rem;
+  transition: all 0.2s 0.1s ease-out;
+  font-size: 1.1rem;
+}
+.toggle-button--aava label:before {
+  content: attr(data-on-text);
+}
+.toggle-button--aava label:after {
+  content: attr(data-off-text);
+}
+
+.toggle-button--aava input[type="checkbox"] + label {
+  width: 120px;
+  background: #ff5335;
+}
+.toggle-button--aava input[type="checkbox"] + label:before {
+  opacity: 0;
+  transform: translate(0, 20px);
+}
+.toggle-button--aava input[type="checkbox"] + label:after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.toggle-button--aava input[type="checkbox"]:checked ~ label {
+  width: 120px;
+  background: #61b136;
+}
+.toggle-button--aava input[type="checkbox"]:checked ~ label:before {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.toggle-button--aava input[type="checkbox"]:checked ~ label:after {
+  opacity: 0;
+  transform: translate(0, -20px);
+}
+
+.toggle-button--aava
+  input[type="checkbox"]:checked
+  ~ .toggle-button__icon:before {
+  transform: translate(-10%, 100%) rotate(45deg);
+  width: 16.66667px;
+}
+
+.toggle-button--aava
+  input[type="checkbox"]:checked
+  ~ .toggle-button__icon:after {
+  transform: translate(30%) rotate(-45deg);
+}
+
+.toggle-button--aava .toggle-button__icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 50px;
+  width: 50px;
+}
+.toggle-button--aava .toggle-button__icon:before,
+.toggle-button--aava .toggle-button__icon:after {
+  height: 3px;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.toggle-button--aava .toggle-button__icon:before {
+  width: 25px;
+  transform: rotate(45deg);
+}
+.toggle-button--aava .toggle-button__icon:after {
+  width: 25px;
+  transform: rotate(-45deg);
+}
+
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+.toggle-button label {
+  display: inline-block;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: left;
+}
+.toggle-button input {
+  display: none;
+}
+.toggle-button__icon {
+  cursor: pointer;
+  pointer-events: none;
+}
+.toggle-button__icon:before,
+.toggle-button__icon:after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 35%;
+  transition: 0.2s ease-out;
 }
