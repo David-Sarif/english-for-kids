@@ -2,7 +2,7 @@ body {
   height: 100vh;
   font-family: "Roboto", sans-serif;
   font-size: 10px;
-  background-color: #daf9ff;
+  background-color: wheat
 }
 
 .visually-hidden {
@@ -33,7 +33,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  border: 3px solid wheat;
+  border: 3px solid #2d303a;
   border-radius: 15px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28), 0 10px 10px rgba(0, 0, 0, 0.28);
   user-select: none;
@@ -49,6 +49,7 @@ body {
   height: 250px;
   border-radius: 10px;
   box-sizing: border-box;
+  border-bottom: 3px solid #2d303a
 }
 
 .cards-container {
@@ -179,7 +180,7 @@ body {
   transition: 0.2s ease-out;
 }
 
-#toggle {
+#toggle-nav {
     display: none;
   }
 .hamburger {
@@ -199,22 +200,25 @@ body {
     width: 3em;
     height: 7px;
     border-radius: 3px;
-    background-color: wheat;
+    background-color: #2d303a;
     margin-top: 8px;
     /* padding-top: 8px; */
     transition: all 0.3s ease-in-out;
   }
-#toggle:checked + .hamburger .top-bun {
+#toggle-nav:checked + .hamburger .top-bun {
     transform: rotate(-45deg);
     margin-top: 25px;
+    background-color: wheat;
   }
-  #toggle:checked + .hamburger .bottom-bun {
+  #toggle-nav:checked + .hamburger .bottom-bun {
     opacity: 0;
     transform: rotate(45deg);
+    background-color: wheat;
   }
-  #toggle:checked + .hamburger .meat {
+  #toggle-nav:checked + .hamburger .meat {
     transform: rotate(45deg);
     margin-top: -7px;
+    background-color: wheat;
   }
 nav{
     padding-top: 100px;
@@ -240,6 +244,7 @@ nav{
     margin: 10px;
     border: 2px solid wheat;
     border-radius: 20px;
+    text-transform: capitalize;
 }
 .nav-list{
     display: flex;
@@ -250,7 +255,7 @@ nav{
     width: 50px;
     height: 50px;
     border: 2px solid wheat;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 /* 
 @keyframes width {
