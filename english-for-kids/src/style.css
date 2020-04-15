@@ -51,6 +51,14 @@ body {
   box-sizing: border-box;
   border-bottom: 3px solid #2d303a
 }
+.icon-rotate{
+  box-sizing: border-box;
+}
+.icon-rotate:hover{
+  border: 3px solid #2d303a;
+  border-radius: 10px;
+
+}
 
 .cards-container {
   display: flex;

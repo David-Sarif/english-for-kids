@@ -1,12 +1,26 @@
 import cardsArray from './cards.js';
 
+const gameState = {
+  isStartPage: true,
+  isGame: false,
+};
+
 const cardsContainer = document.getElementById('cards-container');
 const nav = document.getElementById('nav');
 const toggleNavLabel = document.getElementById('toggle-nav-label');
 const toggleNav = document.getElementById('toggle-nav');
-const navList = document.getElementById('nav-list')
+const navList = document.getElementById('nav-list');
+const audio = document.getElementById('audio');
 
 const drawCards = function (cards) {
+  // debugger
+    // ? if generated cards have categories category that means that we are generating main page 
+  if (cards[0].category === 'categories'){
+    gameState.isStartPage = true
+  }
+  else {
+    gameState.isStartPage = false
+  }
   cardsContainer.innerHTML = '';
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of cards) {
@@ -14,11 +28,14 @@ const drawCards = function (cards) {
     if (elem.category === 'categories') {
       card.classList.add('categories_card');
     }
+    // debugger
     card.classList.add('card');
-    card.innerHTML = `<img src="${elem.img}" alt="" class='card-image'>
+    card.innerHTML = `<audio src="${elem.audio}" class='vusially-hidden' id ='audio'></audio>
+    <img src="${elem.img}" alt="" class='card-image'>
   <div class="card-description">
   <p class="card-name__eng">${elem.nameEng}</p>
   <p class="card-name__rus visually-hidden">${elem.nameRus}</p>
+  
   <span class="material-icons icon-rotate">rotate_right</span>
   </div>
   </img>`;
@@ -27,6 +44,9 @@ const drawCards = function (cards) {
   }
   nav.classList.remove('nav-opened');
   toggleNav.checked = false;
+  // debugger
+
+
 };
 drawCards(cardsArray.filter((card) => card.category === 'categories'));
 
@@ -44,13 +64,24 @@ const generateNav = function (){
 
 generateNav()
 
+
+
 cardsContainer.addEventListener('click', (event) => {
   if (event.target.closest('card')) {
-    const chosenCard = event.target.closest('card').id;
+    const chosenCard = event.target.closest('card');
     // Add checking if it is start page
     // лучше проверять через GameStatus.startPage
-    drawCards(cardsArray.filter((card) => card.category === chosenCard));
-    
+    if (gameState.isStartPage) {
+    drawCards(cardsArray.filter((card) => card.category === chosenCard.id));
+
+    return
+  }
+
+  // ? Playin audio already
+    if (!gameState.isStartPage){
+      chosenCard.childNodes[0].play()
+     
+    }
 
   }
   

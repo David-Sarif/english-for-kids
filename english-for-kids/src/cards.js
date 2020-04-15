@@ -132,7 +132,7 @@ const cardsArray = [
     img: './src/cards/animals/hedgehog.jpg',
     nameRus: 'Ёж',
     nameEng: 'Hedgehog',
-    audio: './src/cards/animals/mp3/hedgehod.mp3',
+    audio: './src/cards/animals/mp3/hedgehog.mp3',
     category: 'animals',
   },
   {
@@ -236,7 +236,7 @@ const cardsArray = [
     img: './src/cards/fruits/apple.jpg',
     nameRus: 'Яблоко',
     nameEng: 'Apple',
-    audio: './src/cards/food/mp3/apple.mp3',
+    audio: './src/cards/fruits/mp3/apple.mp3',
     category: 'fruits',
   },
   {
@@ -244,7 +244,7 @@ const cardsArray = [
     img: './src/cards/fruits/banana.jpg',
     nameRus: 'Банан',
     nameEng: 'banana',
-    audio: './src/cards/food/mp3/banana.mp3',
+    audio: './src/cards/fruits/mp3/banana.mp3',
     category: 'fruits',
   },
   {
@@ -252,7 +252,7 @@ const cardsArray = [
     img: './src/cards/fruits/kiwi.jpg',
     nameRus: 'Киви',
     nameEng: 'kiwi',
-    audio: './src/cards/food/mp3/kiwi.mp3',
+    audio: './src/cards/fruits/mp3/kiwi.mp3',
     category: 'fruits',
   },
   {
@@ -260,7 +260,7 @@ const cardsArray = [
     img: './src/cards/fruits/mango.jpg',
     nameRus: 'Манго',
     nameEng: 'mango',
-    audio: './src/cards/food/mp3/mango.mp3',
+    audio: './src/cards/fruits/mp3/mango.mp3',
     category: 'fruits',
   },
   {
@@ -268,7 +268,7 @@ const cardsArray = [
     img: './src/cards/fruits/orange.jpg',
     nameRus: 'Апельсин',
     nameEng: 'orange',
-    audio: './src/cards/food/mp3/orange.mp3',
+    audio: './src/cards/fruits/mp3/orange.mp3',
     category: 'fruits',
   },
   {
@@ -276,7 +276,7 @@ const cardsArray = [
     img: './src/cards/fruits/peach.jpg',
     nameRus: 'Персик',
     nameEng: 'peach',
-    audio: './src/cards/food/mp3/peach.mp3',
+    audio: './src/cards/fruits/mp3/peach.mp3',
     category: 'fruits',
   },
   {
@@ -284,7 +284,7 @@ const cardsArray = [
     img: './src/cards/fruits/pear.jpg',
     nameRus: 'Груша',
     nameEng: 'pear',
-    audio: './src/cards/food/mp3/pear.mp3',
+    audio: './src/cards/fruits/mp3/pear.mp3',
     category: 'fruits',
   },
   {
@@ -292,7 +292,7 @@ const cardsArray = [
     img: './src/cards/fruits/pineapple.jpg',
     nameRus: 'Ананас',
     nameEng: 'pineapple',
-    audio: './src/cards/food/mp3/pineapple.mp3',
+    audio: './src/cards/fruits/mp3/pineapple.mp3',
     category: 'fruits',
   },
   {
@@ -300,7 +300,7 @@ const cardsArray = [
     img: './src/cards/vegetables/cabbage.jpg',
     nameRus: 'Капуста',
     nameEng: 'cabbage',
-    audio: './src/cards/food/mp3/cabbage.mp3',
+    audio: './src/cards/vegetables/mp3/cabbage.mp3',
     category: 'vegetables',
   },
   {
@@ -308,7 +308,7 @@ const cardsArray = [
     img: './src/cards/vegetables/carrot.jpg',
     nameRus: 'Морковь',
     nameEng: 'carrot',
-    audio: './src/cards/food/mp3/carrot.mp3',
+    audio: './src/cards/vegetables/mp3/carrot.mp3',
     category: 'vegetables',
   },
   {
@@ -316,7 +316,7 @@ const cardsArray = [
     img: './src/cards/vegetables/cucumber.jpg',
     nameRus: 'Огурец',
     nameEng: 'cucumber',
-    audio: './src/cards/food/mp3/cucumber.mp3',
+    audio: './src/cards/vegetables/mp3/cucumber.mp3',
     category: 'vegetables',
   },
   {
@@ -324,7 +324,7 @@ const cardsArray = [
     img: './src/cards/vegetables/eggplant.jpg',
     nameRus: 'Баклажан',
     nameEng: 'eggplant',
-    audio: './src/cards/food/mp3/eggplant.mp3',
+    audio: './src/cards/vegetables/mp3/eggplant.mp3',
     category: 'vegetables',
   },
   {
@@ -332,7 +332,7 @@ const cardsArray = [
     img: './src/cards/vegetables/peas.jpg',
     nameRus: 'Горох',
     nameEng: 'peas',
-    audio: './src/cards/food/mp3/peas.mp3',
+    audio: './src/cards/vegetables/mp3/peas.mp3',
     category: 'vegetables',
   },
   {
@@ -340,7 +340,7 @@ const cardsArray = [
     img: './src/cards/vegetables/pumpkin.jpg',
     nameRus: 'Тыква',
     nameEng: 'pumpkin',
-    audio: './src/cards/food/mp3/pumpkin.mp3',
+    audio: './src/cards/vegetables/mp3/pumpkin.mp3',
     category: 'vegetables',
   },
   {
@@ -348,7 +348,7 @@ const cardsArray = [
     img: './src/cards/vegetables/radish.jpg',
     nameRus: 'Редис',
     nameEng: 'radish',
-    audio: './src/cards/food/mp3/radish.mp3',
+    audio: './src/cards/vegetables/mp3/radish.mp3',
     category: 'vegetables',
   },
   {
@@ -356,7 +356,7 @@ const cardsArray = [
     img: './src/cards/vegetables/tomato.jpg',
     nameRus: 'Помидор',
     nameEng: 'tomato',
-    audio: './src/cards/food/mp3/tomato.mp3',
+    audio: './src/cards/vegetables/mp3/tomato.mp3',
     category: 'vegetables',
   },
 
