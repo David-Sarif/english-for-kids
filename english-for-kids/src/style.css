@@ -2,15 +2,25 @@ body {
   height: 100vh;
   font-family: "Roboto", sans-serif;
   font-size: 10px;
+  background-color: #daf9ff;
 }
 
 .visually-hidden {
   display: none;
 }
 .wrapper {
-  background-color: #daf9ff;
+  
   width: 80vw;
   margin: 0 auto;
+}
+
+.header-wrapper{
+    width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
 }
 
 .card {
@@ -23,13 +33,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  border: 3px solid rgb(217, 221, 10);
+  border: 3px solid wheat;
   border-radius: 15px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28), 0 10px 10px rgba(0, 0, 0, 0.28);
   user-select: none;
   /* transform: scale(-1, 1); */
   /* transform: rotateY(60deg); */
-  /* background-image: url('./cards/Коты/22891bffd889a73345c3502aca2c2fed.jpg'); */
 }
 .card:hover {
   box-shadow: 5px 19px 28px rgba(0, 0, 0, 0.4), 5px 15px 10px rgba(0, 0, 0, 0.4);
@@ -169,3 +178,86 @@ body {
   left: 35%;
   transition: 0.2s ease-out;
 }
+
+#toggle {
+    display: none;
+  }
+.hamburger {
+    position: relative;
+    /* top: 5em; */
+    /* right: 5%; */
+    /* margin-left: -2em; */
+    /* margin-top: -45px; */
+    width: 2em;
+    height: 45px;
+    z-index: 5;
+    cursor: pointer;
+  }
+  
+  .hamburger div {
+    position: relative;
+    width: 3em;
+    height: 7px;
+    border-radius: 3px;
+    background-color: wheat;
+    margin-top: 8px;
+    /* padding-top: 8px; */
+    transition: all 0.3s ease-in-out;
+  }
+#toggle:checked + .hamburger .top-bun {
+    transform: rotate(-45deg);
+    margin-top: 25px;
+  }
+  #toggle:checked + .hamburger .bottom-bun {
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  #toggle:checked + .hamburger .meat {
+    transform: rotate(45deg);
+    margin-top: -7px;
+  }
+nav{
+    padding-top: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+  width: 350px;
+    position: fixed;
+    /* top: 67px; */
+    /* left: 0; */
+    height: 100%;
+    background-color: #2d303a;
+    /* display: none; */
+    /* z-index: 5; */
+    /* transition: width 2s;
+    animation: width 2s; */
+}
+
+.nav-element{
+    color:wheat;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 5px;
+    margin: 10px;
+    border: 2px solid wheat;
+    border-radius: 20px;
+}
+.nav-list{
+    display: flex;
+    flex-direction: column;
+}
+.nav-element__img{
+    border-radius: 14px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid wheat;
+    margin-right: 5px;
+}
+/* 
+@keyframes width {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0px;
+  }
+} */

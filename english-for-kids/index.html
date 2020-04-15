@@ -15,15 +15,36 @@
 
 <body>
     <header>
-        <div class="wrapper">
+        <nav id='nav' class='visually-hidden'>
+            <ul class = 'nav-list'>
+                <li class = 'nav-element' id='cats'><img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Big Cats</li>
+                <li class = 'nav-element' id='animals'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Animals</li>
+                <li class = 'nav-element' id='fruits'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Fruits</li>
+                <li class = 'nav-element'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Food</li>
+                <li class = 'nav-element'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Vegetables</li>
+
+
+            </ul>
+
+        </nav>
+        <div class="header-wrapper">
+            <div class="hamburger-toggle">
+                <input id="toggle" type="checkbox"></input>
+    
+                <label for="toggle" class="hamburger">
+                    <div class="top-bun"></div>
+                    <div class="meat"></div>
+                    <div class="bottom-bun"></div>
+                </label>
+            </div>
             <div class="toggle-button toggle-button--aava">
                 <input id="toggleButton" type="checkbox">
                 <label for="toggleButton" data-on-text="Play" data-off-text="Train"></label>
                 <div class="toggle-button__icon"></div>
             </div>
-            <!-- menu-open -->
+            
             <!-- button-play -->
-            <!-- checkbox-switch -->
+           
         </div>
     </header>
     <main>

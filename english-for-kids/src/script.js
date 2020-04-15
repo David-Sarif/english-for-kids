@@ -1,6 +1,7 @@
 import cardsArray from './cards.js';
 
 const cardsContainer = document.getElementById('cards-container');
+const nav = document.getElementById('nav');
 const drawCards = function (cards) {
   cardsContainer.innerHTML = '';
   // eslint-disable-next-line no-restricted-syntax
@@ -31,4 +32,20 @@ cardsContainer.addEventListener('click', (event) => {
     drawCards(cardsArray.filter((card) => card.category === chosenCard));
 
   }
+  
+  
+})
+nav.addEventListener('click', (event) =>{
+  if (event.target.closest('li')) {
+    const chosenCard = event.target.closest('li').id;
+    
+    drawCards(cardsArray.filter((card) => card.category === chosenCard));
+    nav.classList.add('visually-hidden')
+
+  }
+  
+})
+
+document.querySelector("body > header > div > div.hamburger-toggle > label").addEventListener('click', (event) =>{
+  nav.classList.toggle('visually-hidden')
 })
