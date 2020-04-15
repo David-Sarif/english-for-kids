@@ -25,6 +25,8 @@ const drawCards = function (cards) {
     card.id = elem.name;
     cardsContainer.appendChild(card);
   }
+  nav.classList.remove('nav-opened');
+  toggleNav.checked = false;
 };
 drawCards(cardsArray.filter((card) => card.category === 'categories'));
 
@@ -48,6 +50,7 @@ cardsContainer.addEventListener('click', (event) => {
     // Add checking if it is start page
     // лучше проверять через GameStatus.startPage
     drawCards(cardsArray.filter((card) => card.category === chosenCard));
+    
 
   }
   
@@ -58,8 +61,8 @@ nav.addEventListener('click', (event) =>{
     const chosenCard = event.target.closest('li').id;
     
     drawCards(cardsArray.filter((card) => card.category === chosenCard));
-    nav.classList.add('visually-hidden');
-    toggleNav.checked = false;
+    
+    
 
   }
   
