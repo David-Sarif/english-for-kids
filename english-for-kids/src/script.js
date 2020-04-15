@@ -11,7 +11,14 @@ const toggleNavLabel = document.getElementById('toggle-nav-label');
 const toggleNav = document.getElementById('toggle-nav');
 const navList = document.getElementById('nav-list');
 const audio = document.getElementById('audio');
-
+// pause(1000);
+// function pause(ms)
+// {
+// var date = new Date();
+// var curDate = null;
+// do { curDate = new Date(); }
+// while(curDate-date &lt; ms);
+// }
 const drawCards = function (cards) {
   // debugger
     // ? if generated cards have categories category that means that we are generating main page 
@@ -29,12 +36,13 @@ const drawCards = function (cards) {
       card.classList.add('categories_card');
     }
     // debugger
-    card.classList.add('card');
+    card.classList.add('card', 'not-rotate-card');
     card.innerHTML = `<audio src="${elem.audio}" class='vusially-hidden' id ='audio'></audio>
     <img src="${elem.img}" alt="" class='card-image'>
   <div class="card-description">
   <p class="card-name__eng">${elem.nameEng}</p>
-  <p class="card-name__rus visually-hidden">${elem.nameRus}</p>
+  <p class="card-name__rus visually-hidden ">${elem.nameRus}</p>
+
   
   <span class="material-icons icon-rotate">rotate_right</span>
   </div>
@@ -76,13 +84,28 @@ cardsContainer.addEventListener('click', (event) => {
 
     return
   }
-
+  // ? flip card
+  if (event.target.closest('span')){
+    
+    // chosenCard.classList.remove('not-rotate-card');
+    chosenCard.classList.add('rotate-card');
+    chosenCard.childNodes[4].childNodes[1].classList.add('visually-hidden');
+    chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden')
+    // chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden');
+    chosenCard.addEventListener('mouseleave', (event) => {
+      // console.log(event)
+      chosenCard.classList.remove('rotate-card');
+      // chosenCard.classList.add('not-rotate-card');
+      chosenCard.childNodes[4].childNodes[1].classList.remove('visually-hidden');
+      chosenCard.childNodes[4].childNodes[3].classList.add('visually-hidden');
+    })
+    return
+  }
   // ? Playin audio already
     if (!gameState.isStartPage){
       chosenCard.childNodes[0].play()
      
     }
-
   }
   
   
@@ -92,13 +115,10 @@ nav.addEventListener('click', (event) =>{
     const chosenCard = event.target.closest('li').id;
     
     drawCards(cardsArray.filter((card) => card.category === chosenCard));
-    
-    
-
   }
-  
 })
 
 toggleNavLabel.addEventListener('click', (event) =>{
   nav.classList.toggle('nav-opened')
 })
+

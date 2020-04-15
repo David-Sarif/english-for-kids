@@ -37,12 +37,12 @@ body {
   border-radius: 15px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28), 0 10px 10px rgba(0, 0, 0, 0.28);
   user-select: none;
-  /* transform: scale(-1, 1); */
-  /* transform: rotateY(60deg); */
+  transform:  scale(1, 1);
+  transition: transform 1.5s;
+
 }
 .card:hover {
   box-shadow: 5px 19px 28px rgba(0, 0, 0, 0.4), 5px 15px 10px rgba(0, 0, 0, 0.4);
-  /* opacity: 0; */
 }
 .card-image {
   width: 244px;
@@ -59,6 +59,10 @@ body {
   border-radius: 10px;
 
 }
+.rotate-card{
+  transform: scale(-1, 1) rotateY(180deg);
+  transition: transform 1.5s;
+}
 
 .cards-container {
   display: flex;
@@ -66,6 +70,19 @@ body {
   justify-content: center;
   text-transform: capitalize;
 }
+
+/* .card-name__rus{
+  opacity: 1;
+ 
+}
+.card-name__eng{
+  opacity: 1;
+ 
+}
+.card-name-hidden{
+  opacity:0;
+  transition: opacity 2s;
+} */
 
 .card-description {
   display: flex;
