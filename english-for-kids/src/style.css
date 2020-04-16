@@ -72,6 +72,10 @@ body {
   text-transform: capitalize;
 }
 
+.card-playable{
+  height:255px;
+}
+
 /* .card-name__rus{
   opacity: 1;
  
@@ -290,6 +294,10 @@ nav{
     height: 50px;
     border: 2px solid wheat;
     margin-right: 10px;
+}
+
+.visually-hidden {
+  display: none;
 }
 
 /* @keyframes width {

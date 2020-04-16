@@ -12,20 +12,38 @@ const toggleNav = document.getElementById('toggle-nav');
 const navList = document.getElementById('nav-list');
 const audio = document.getElementById('audio');
 
+const stateChanger = document.getElementById('toggleButton');
+const toggleStateLabel = document.getElementById('toggle-state');
+
+const playContainer = document.getElementById('play-container');
+const playButton = document.getElementById('play-button');
+
+
+
   const drawCards = function (category) {
     // ? getting an array of cards of certain category and shuffle them
    const cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5)
-    // ? if generated cards have categories category that means that we are generating main page 
+
+    // ? if generated cards have categories category that means that we are generating main page
+    // debugger
   if (cards[0].category === 'categories'){
-    gameState.isStartPage = true
+    gameState.isStartPage = true;
+    playContainer.classList.add('visually-hidden')
+  }
+  else if (gameState.isGame === true) {
+    playContainer.classList.remove('visually-hidden')
+    gameState.isStartPage = false
   }
   else {
     gameState.isStartPage = false
   }
+
   cardsContainer.innerHTML = '';
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of cards) {
     const card = document.createElement('card');
+    // debugger
+    card.dataset.category = elem.category
     if (elem.category === 'categories') {
       card.classList.add('categories_card');
     }
@@ -40,6 +58,13 @@ const audio = document.getElementById('audio');
   <span class="material-icons icon-rotate">rotate_right</span>
   </div>
   </img>`;
+    
+    if (!gameState.isStartPage && gameState.isGame)
+    {
+        card.childNodes[4].classList.toggle('visually-hidden')
+        card.classList.toggle('card-playable')
+     }
+
     card.id = elem.name;
     cardsContainer.appendChild(card);
   }
@@ -64,13 +89,40 @@ const generateNav = function (){
 
 generateNav()
 
+//  ? PLAYIN THE GAME
+toggleStateLabel.addEventListener('click',(event) =>{
+  gameState.isGame = !gameState.isGame
+
+  if (gameState.isStartPage === false)
+    {
+      //  ! вызываем редроукард с текущей категорией
+      const currentCategory = document.querySelector('card').dataset.category
+      drawCards(currentCategory)
+      // debugger
+
+      // const currentCards = document.querySelectorAll('card')
+      // playContainer.classList.toggle('visually-hidden')
+      //  for (let card of currentCards){
+      //   //  debugger
+      //    card.childNodes[4].classList.toggle('visually-hidden')
+      //    card.classList.toggle('card-playable')
+      //  }
+
+
+
+    }
+    
+
+
+})
+
 
 
 cardsContainer.addEventListener('click', (event) => {
   if (event.target.closest('card')) {
     const chosenCard = event.target.closest('card');
-    // Add checking if it is start page
-    // лучше проверять через GameStatus.startPage
+    // ? if it is start page
+
     if (gameState.isStartPage) {
     drawCards(chosenCard.id)
 
@@ -89,7 +141,7 @@ cardsContainer.addEventListener('click', (event) => {
     return
   }
   // ? Playin audio already
-    if (!gameState.isStartPage){
+    if (!gameState.isStartPage &&!gameState.isGame){
       chosenCard.childNodes[0].play()
      
     }
