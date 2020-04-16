@@ -11,16 +11,10 @@ const toggleNavLabel = document.getElementById('toggle-nav-label');
 const toggleNav = document.getElementById('toggle-nav');
 const navList = document.getElementById('nav-list');
 const audio = document.getElementById('audio');
-// pause(1000);
-// function pause(ms)
-// {
-// var date = new Date();
-// var curDate = null;
-// do { curDate = new Date(); }
-// while(curDate-date &lt; ms);
-// }
-const drawCards = function (cards) {
-  // debugger
+
+  const drawCards = function (category) {
+    // ? getting an array of cards of certain category and shuffle them
+   const cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5)
     // ? if generated cards have categories category that means that we are generating main page 
   if (cards[0].category === 'categories'){
     gameState.isStartPage = true
@@ -35,7 +29,6 @@ const drawCards = function (cards) {
     if (elem.category === 'categories') {
       card.classList.add('categories_card');
     }
-    // debugger
     card.classList.add('card', 'not-rotate-card');
     card.innerHTML = `<audio src="${elem.audio}" class='vusially-hidden' id ='audio'></audio>
     <img src="${elem.img}" alt="" class='card-image'>
@@ -52,11 +45,10 @@ const drawCards = function (cards) {
   }
   nav.classList.remove('nav-opened');
   toggleNav.checked = false;
-  // debugger
-
 
 };
-drawCards(cardsArray.filter((card) => card.category === 'categories'));
+
+drawCards('categories')
 
 const generateNav = function (){
   const categories = cardsArray.filter((card) => card.category === 'categories');
@@ -80,22 +72,17 @@ cardsContainer.addEventListener('click', (event) => {
     // Add checking if it is start page
     // лучше проверять через GameStatus.startPage
     if (gameState.isStartPage) {
-    drawCards(cardsArray.filter((card) => card.category === chosenCard.id));
+    drawCards(chosenCard.id)
 
     return
   }
   // ? flip card
   if (event.target.closest('span')){
-    
-    // chosenCard.classList.remove('not-rotate-card');
     chosenCard.classList.add('rotate-card');
     chosenCard.childNodes[4].childNodes[1].classList.add('visually-hidden');
     chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden')
-    // chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden');
     chosenCard.addEventListener('mouseleave', (event) => {
-      // console.log(event)
       chosenCard.classList.remove('rotate-card');
-      // chosenCard.classList.add('not-rotate-card');
       chosenCard.childNodes[4].childNodes[1].classList.remove('visually-hidden');
       chosenCard.childNodes[4].childNodes[3].classList.add('visually-hidden');
     })
@@ -112,9 +99,8 @@ cardsContainer.addEventListener('click', (event) => {
 })
 nav.addEventListener('click', (event) =>{
   if (event.target.closest('li')) {
-    const chosenCard = event.target.closest('li').id;
-    
-    drawCards(cardsArray.filter((card) => card.category === chosenCard));
+    const chosenCard = event.target.closest('li');
+    drawCards(chosenCard.id)
   }
 })
 
