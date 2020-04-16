@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/extensions
 import cardsArray from './cards.js';
 
 const gameState = {
@@ -18,24 +19,20 @@ const toggleStateLabel = document.getElementById('toggle-state');
 const playContainer = document.getElementById('play-container');
 const playButton = document.getElementById('play-button');
 
+const drawCards = function (category) {
+  // ? getting an array of cards of certain category and shuffle them
+  const cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5);
 
-
-  const drawCards = function (category) {
-    // ? getting an array of cards of certain category and shuffle them
-   const cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5)
-
-    // ? if generated cards have categories category that means that we are generating main page
-    // debugger
-  if (cards[0].category === 'categories'){
+  // ? if generated cards have categories category that means that we are generating main page
+  // debugger
+  if (cards[0].category === 'categories') {
     gameState.isStartPage = true;
-    playContainer.classList.add('visually-hidden')
-  }
-  else if (gameState.isGame === true) {
-    playContainer.classList.remove('visually-hidden')
-    gameState.isStartPage = false
-  }
-  else {
-    gameState.isStartPage = false
+    playContainer.classList.add('visually-hidden');
+  } else if (gameState.isGame === true) {
+    playContainer.classList.remove('visually-hidden');
+    gameState.isStartPage = false;
+  } else {
+    gameState.isStartPage = false;
   }
 
   cardsContainer.innerHTML = '';
@@ -43,7 +40,7 @@ const playButton = document.getElementById('play-button');
   for (const elem of cards) {
     const card = document.createElement('card');
     // debugger
-    card.dataset.category = elem.category
+    card.dataset.category = elem.category;
     if (elem.category === 'categories') {
       card.classList.add('categories_card');
     }
@@ -58,12 +55,11 @@ const playButton = document.getElementById('play-button');
   <span class="material-icons icon-rotate">rotate_right</span>
   </div>
   </img>`;
-    
-    if (!gameState.isStartPage && gameState.isGame)
-    {
-        card.childNodes[4].classList.toggle('visually-hidden')
-        card.classList.toggle('card-playable')
-     }
+
+    if (!gameState.isStartPage && gameState.isGame) {
+      card.childNodes[4].classList.toggle('visually-hidden');
+      card.classList.toggle('card-playable');
+    }
 
     card.id = elem.name;
     cardsContainer.appendChild(card);
@@ -73,49 +69,42 @@ const playButton = document.getElementById('play-button');
 
 };
 
-drawCards('categories')
+drawCards('categories');
 
-const generateNav = function (){
+const generateNav = function () {
   const categories = cardsArray.filter((card) => card.category === 'categories');
-  for (const elem of categories){
+  // eslint-disable-next-line no-restricted-syntax
+  for (const elem of categories) {
     const category = document.createElement('li');
     category.classList.add('nav-element');
     category.id = elem.name;
     category.innerHTML = `<img src="${elem.img}" class='nav-element__img' alt="">${elem.name}`;
     navList.append(category);
   }
-  
-}
 
-generateNav()
+};
+
+generateNav();
 
 //  ? PLAYIN THE GAME
-toggleStateLabel.addEventListener('click',(event) =>{
-  gameState.isGame = !gameState.isGame
+toggleStateLabel.addEventListener('click', (event) => {
+  gameState.isGame = !gameState.isGame;
 
-  if (gameState.isStartPage === false)
-    {
-      //  ! вызываем редроукард с текущей категорией
-      const currentCategory = document.querySelector('card').dataset.category
-      drawCards(currentCategory)
-      // debugger
+  if (gameState.isStartPage === false) {
+    //  ! вызываем редроукард с текущей категорией
+    const currentCategory = document.querySelector('card').dataset.category;
+    drawCards(currentCategory);
+    // debugger
 
-      // const currentCards = document.querySelectorAll('card')
-      // playContainer.classList.toggle('visually-hidden')
-      //  for (let card of currentCards){
-      //   //  debugger
-      //    card.childNodes[4].classList.toggle('visually-hidden')
-      //    card.classList.toggle('card-playable')
-      //  }
-
-
-
-    }
-    
-
-
-})
-
+    // const currentCards = document.querySelectorAll('card')
+    // playContainer.classList.toggle('visually-hidden')
+    //  for (let card of currentCards){
+    //   //  debugger
+    //    card.childNodes[4].classList.toggle('visually-hidden')
+    //    card.classList.toggle('card-playable')
+    //  }
+  }
+});
 
 
 cardsContainer.addEventListener('click', (event) => {
@@ -124,39 +113,35 @@ cardsContainer.addEventListener('click', (event) => {
     // ? if it is start page
 
     if (gameState.isStartPage) {
-    drawCards(chosenCard.id)
+      drawCards(chosenCard.id);
 
-    return
-  }
-  // ? flip card
-  if (event.target.closest('span')){
-    chosenCard.classList.add('rotate-card');
-    chosenCard.childNodes[4].childNodes[1].classList.add('visually-hidden');
-    chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden')
-    chosenCard.addEventListener('mouseleave', (event) => {
-      chosenCard.classList.remove('rotate-card');
-      chosenCard.childNodes[4].childNodes[1].classList.remove('visually-hidden');
-      chosenCard.childNodes[4].childNodes[3].classList.add('visually-hidden');
-    })
-    return
-  }
-  // ? Playin audio already
-    if (!gameState.isStartPage &&!gameState.isGame){
-      chosenCard.childNodes[0].play()
-     
+      return;
+    }
+    // ? flip card
+    if (event.target.closest('span')) {
+      chosenCard.classList.add('rotate-card');
+      chosenCard.childNodes[4].childNodes[1].classList.add('visually-hidden');
+      chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden');
+      chosenCard.addEventListener('mouseleave', (event) => {
+        chosenCard.classList.remove('rotate-card');
+        chosenCard.childNodes[4].childNodes[1].classList.remove('visually-hidden');
+        chosenCard.childNodes[4].childNodes[3].classList.add('visually-hidden');
+      });
+      return;
+    }
+    // ? Playin audio already
+    if (!gameState.isStartPage && !gameState.isGame) {
+      chosenCard.childNodes[0].play();
     }
   }
-  
-  
-})
-nav.addEventListener('click', (event) =>{
+});
+nav.addEventListener('click', (event) => {
   if (event.target.closest('li')) {
     const chosenCard = event.target.closest('li');
-    drawCards(chosenCard.id)
+    drawCards(chosenCard.id);
   }
-})
+});
 
-toggleNavLabel.addEventListener('click', (event) =>{
-  nav.classList.toggle('nav-opened')
-})
-
+toggleNavLabel.addEventListener('click', (event) => {
+  nav.classList.toggle('nav-opened');
+});
