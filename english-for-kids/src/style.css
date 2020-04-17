@@ -4,6 +4,9 @@ body {
   font-size: 10px;
   background-color: wheat
 }
+html{
+  height: 100%; 
+}
 
 .visually-hidden {
   display: none;
@@ -13,7 +16,11 @@ body {
   width: 80vw;
   margin: 0 auto;
 }
-
+header{
+  /* position: sticky; */
+  top: 0;
+  z-index: 4;
+}
 .header-wrapper{
     width: 80vw;
   margin: 0 auto;
@@ -250,15 +257,19 @@ body {
     background-color: wheat;
   }
 nav{
+  display: block;
   
-    padding-top: 100px;
+    /* padding-top: 100px; */
     padding-left: 20px;
     padding-right: 20px;
   width: 350px;
     position: absolute;
+    /* position: fixed; */
+    /* position: sticky; */
     top: 0px;
     left: -400px;
-    height: 100%;
+    min-height: 100%;
+    max-height: 200%;
     background-color: #2d303a;
     /* display: none; */
     z-index: 4;
@@ -268,6 +279,8 @@ nav{
     /* box-sizing: border-box;
     display: flex;
     align-items: stretch; */
+    padding-bottom: auto;
+    
 }
 .nav-opened{
   left: 0px;
@@ -279,7 +292,7 @@ nav{
     font-size: 1.6rem;
     cursor: pointer;
     padding: 5px;
-    margin: 10px;
+    margin: 6px;
     border: 2px solid wheat;
     border-radius: 20px;
     text-transform: capitalize;
@@ -287,7 +300,12 @@ nav{
 .nav-list{
     display: flex;
     flex-direction: column;
+    padding-top: 80px;
     /* height: 100%; */
+    /* background-color: #2d303a; */
+    
+    /* position: sticky; */
+    /* height: 110vh; */
 }
 .nav-element__img{
     border-radius: 14px;
@@ -325,12 +343,13 @@ box-shadow:  3px 7px 10px rgba(0, 0, 0, 0.4);
 .score-container img {
   width: 5vw;
   height: 5vw;
-  padding: 2px;
+  margin: 2px;
 }
 
 .score-container{
   height: 5vw;
   overflow: hidden;
+  margin-bottom: 3px;
 }
 /* @keyframes width {
   from {
