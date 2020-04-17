@@ -3,7 +3,9 @@ import cardsArray from './cards.js';
 
 const gameState = {
   isStartPage: true,
+  isGameMode: false,
   isGame: false,
+
 };
 
 const cardsContainer = document.getElementById('cards-container');
@@ -18,10 +20,30 @@ const toggleStateLabel = document.getElementById('toggle-state');
 
 const playContainer = document.getElementById('play-container');
 const playButton = document.getElementById('play-button');
+const repeatContainer = document.getElementById('repeat-container');
+const repeatButton = document.getElementById('repeat-button');
 
 const currentCardCounter = 0;
 const iconPlay = document.getElementById('icon-play');
 const textPlay = document.getElementById('text-play');
+
+const thumbsUp = '<img src="./src/img/thumbs_up.png" class="thumbs-img" alt="">';
+
+const thumbsDown = '<img src="./src/img/thumbs_down.png" class="thumbs-img" alt="">';
+
+const scoreContainer = document.getElementById('score-container');
+// thumbsUp.classList.add('thumbs-img');
+
+
+let currentCardsArray = [];
+let currentCard = {};
+const cardCorrect = function() {
+  scoreContainer.innerHTML = thumbsUp + scoreContainer.innerHTML;
+  // alert('верно')
+}
+const cardIncorrect = function() {
+  scoreContainer.innerHTML = thumbsDown + scoreContainer.innerHTML;
+}
 
 const drawCards = function (category) {
   // ? getting an array of cards of certain category and shuffle them
@@ -32,10 +54,14 @@ const drawCards = function (category) {
   if (cards[0].category === 'categories') {
     gameState.isStartPage = true;
     playContainer.classList.add('visually-hidden');
-  } else if (gameState.isGame === true) {
+    repeatContainer.classList.add('visually-hidden');
+    repeatContainer.classList.add('visually-hidden');
+    // textPlay.classList.remove('visually-hidden');
+  } else if (gameState.isGameMode === true) {
     playContainer.classList.remove('visually-hidden');
+    gameState.isGame = false;
     gameState.isStartPage = false;
-  } else if (gameState.isGame === false) {
+  } else if (gameState.isGameMode === false) {
     playContainer.classList.add('visually-hidden');
     gameState.isStartPage = false;
   } else {
@@ -63,7 +89,7 @@ const drawCards = function (category) {
   </div>
   </img>`;
 
-    if (!gameState.isStartPage && gameState.isGame) {
+    if (!gameState.isStartPage && gameState.isGameMode) {
       card.childNodes[4].classList.toggle('visually-hidden');
       card.classList.toggle('card-playable');
     }
@@ -93,19 +119,35 @@ const generateNav = function () {
 
 generateNav();
 
-//  ? PLAYIN THE GAME
-toggleStateLabel.addEventListener('click', (event) => {
-  gameState.isGame = !gameState.isGame;
 
+toggleStateLabel.addEventListener('click', (event) => {
+  gameState.isGameMode = !gameState.isGameMode;
+  repeatContainer.classList.add('visually-hidden');
+  textPlay.classList.remove('visually-hidden');
+  const currentCategory = document.querySelector('card').dataset.category;
+  currentCardsArray = cardsArray.filter((card) => card.category === currentCategory).sort(() => Math.random() - 0.5);
   if (gameState.isStartPage === false) {
-    const currentCategory = document.querySelector('card').dataset.category;
     drawCards(currentCategory);
   }
 });
-
+//  ? PLAYIN THE GAME
 playButton.addEventListener('click', () => {
-  iconPlay.classList.remove('visually-hidden');
-  textPlay.classList.add('visually-hidden');
+  playContainer.classList.add('visually-hidden');
+  repeatContainer.classList.remove('visually-hidden');
+  // iconPlay.classList.remove('visually-hidden');
+  // textPlay.classList.add('visually-hidden');
+  gameState.isGame = true;
+  if (currentCardCounter === 0) {
+    // получаем категорию
+    // const currentCategory = document.querySelector('card').dataset.category;
+    // собираем массив этой категории
+    // currentCardsArray = cardsArray.filter((card) => card.category === currentCategory).sort(() => Math.random() - 0.5);
+    // debugger
+    currentCard = currentCardsArray[currentCardCounter];
+    audio.src = currentCard.audio;
+    audio.play();
+
+  }
 
   // получаем текущую категорию
   // получаем перемешанный массив аудио по текущей категории
@@ -143,8 +185,19 @@ cardsContainer.addEventListener('click', (event) => {
       return;
     }
     // ? Playin audio already
-    if (!gameState.isStartPage && !gameState.isGame) {
+    if (!gameState.isStartPage && !gameState.isGameMode) {
       chosenCard.childNodes[0].play();
+    }
+
+    if (!gameState.isStartPage && gameState.isGameMode && gameState.isGame) {
+      if (chosenCard.id === currentCard.name)
+      {
+        cardCorrect();
+        
+      }
+      else {
+        cardIncorrect();
+      }
     }
   }
 });

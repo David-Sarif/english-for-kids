@@ -322,6 +322,16 @@ box-shadow:  3px 7px 10px rgba(0, 0, 0, 0.4);
   display: none;
 }
 
+.score-container img {
+  width: 5vw;
+  height: 5vw;
+  padding: 2px;
+}
+
+.score-container{
+  height: 5vw;
+  overflow: hidden;
+}
 /* @keyframes width {
   from {
     left: 100%;

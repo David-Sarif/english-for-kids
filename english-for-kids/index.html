@@ -40,19 +40,23 @@
                     <div class="bottom-bun"></div>
                 </label>
             </div>
+
             <div class='button-play-container visually-hidden' id='play-container'>
                 <button type="button" id='play-button' class='play-button'>
-                    <span class="material-icons icon-play visually-hidden" id='icon-play'>
-                        play_circle_outline
-                    </span>
                     <span class="text-play" id='text-play'>
                     PLAY 
                 </span>
                 </button>
             </div>
-            <!-- <div class='button-play-container visually-hidden' id='play-container'>
-                <button type="button" id='play-button' class='play-button'> PLAY </button>
-            </div> -->
+            <div class='button-play-container visually-hidden' id='repeat-container'>
+                <button type="button" id='play-button' class='play-button'>
+                    <span class="material-icons icon-play" id='icon-play'>
+                        play_circle_outline
+                    </span>
+                </button>
+            </div>
+
+
             <div class="toggle-button toggle-button--aava">
                 <input id="toggleButton" type="checkbox">
                 <label for="toggleButton" data-on-text="Play" data-off-text="Train" id='toggle-state'></label>
@@ -65,6 +69,11 @@
         </div>
     </header>
     <main>
+        <div class="score-container wrapper" id='score-container'>
+            <!-- <img src="./src/img/thumbs_down.png" class='thumbs-img' alt="">
+            <img src="./src/img/thumbs_up.png" class='thumbs-img' alt=""> -->
+
+        </div>
         <div class="wrapper cards-container" id='cards-container'>
 
         </div>
