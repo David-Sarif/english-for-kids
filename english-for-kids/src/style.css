@@ -1,5 +1,5 @@
 body {
-  height: 100vh;
+  height: 100%;
   font-family: "Roboto", sans-serif;
   font-size: 10px;
   background-color: wheat
@@ -254,12 +254,13 @@ body {
     background-color: wheat;
   }
 nav{
+  
     padding-top: 100px;
     padding-left: 20px;
     padding-right: 20px;
   width: 350px;
-    position: fixed;
-    /* top: 67px; */
+    position: absolute;
+    top: 0px;
     left: -400px;
     height: 100%;
     background-color: #2d303a;
@@ -268,6 +269,9 @@ nav{
     /* 
     animation: width 2s; */
     transition: left 2s;
+    /* box-sizing: border-box;
+    display: flex;
+    align-items: stretch; */
 }
 .nav-opened{
   left: 0px;
@@ -287,6 +291,7 @@ nav{
 .nav-list{
     display: flex;
     flex-direction: column;
+    /* height: 100%; */
 }
 .nav-element__img{
     border-radius: 14px;
