@@ -5,20 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English for kids</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./src/reset.css">
     <link rel="stylesheet" href="./src/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+
 
 </head>
 
 <body>
     <header>
-        <audio src="./src/cards/cats/mp3/cheetah.mp3" class='vusially-hidden' id ='audio'></audio>
+        <audio src="./src/cards/cats/mp3/cheetah.mp3" class='vusially-hidden' id='audio'></audio>
         <nav id='nav'>
-            <ul class = 'nav-list' id = 'nav-list'>
-                <li class = 'nav-element' id='categories'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt=""> Main Page</li>
+            <ul class='nav-list' id='nav-list'>
+                <li class='nav-element' id='categories'> <img src="./src/cards/cats/cheetah.jpg"
+                        class='nav-element__img' alt=""> Main Page</li>
                 <!-- <li class = 'nav-element' id='cats'><img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Big Cats</li>
                 <li class = 'nav-element' id='animals'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Animals</li>
                 <li class = 'nav-element' id='fruits'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Fruits</li>
@@ -32,7 +33,7 @@
         <div class="header-wrapper">
             <div class="hamburger-toggle">
                 <input id="toggle-nav" type="checkbox"></input>
-    
+
                 <label for="toggle-nav" class="hamburger" id='toggle-nav-label'>
                     <div class="top-bun"></div>
                     <div class="meat"></div>
@@ -40,24 +41,32 @@
                 </label>
             </div>
             <div class='button-play-container visually-hidden' id='play-container'>
-                <button type="button" id='play-button'> PLAY </button>
+                <button type="button" id='play-button' class='play-button'>
+                    <span class="material-icons icon-play visually-hidden" id='icon-play'>
+                        play_circle_outline
+                    </span>
+                    <span class="text-play" id='text-play'>
+                    PLAY 
+                </span>
+                </button>
             </div>
+            <!-- <div class='button-play-container visually-hidden' id='play-container'>
+                <button type="button" id='play-button' class='play-button'> PLAY </button>
+            </div> -->
             <div class="toggle-button toggle-button--aava">
                 <input id="toggleButton" type="checkbox">
                 <label for="toggleButton" data-on-text="Play" data-off-text="Train" id='toggle-state'></label>
                 <div class="toggle-button__icon"></div>
             </div>
-            
+
             <!-- button-play -->
-            <div class='button-play-container visually-hidden' id='play-container'>
-                <button type="button" id='play-button'> PLAY </button>
-            </div>
-           
+
+
         </div>
     </header>
     <main>
         <div class="wrapper cards-container" id='cards-container'>
-            
+
         </div>
     </main>
     <script src="./src/script.js" type="module"></script>

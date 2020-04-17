@@ -19,6 +19,10 @@ const toggleStateLabel = document.getElementById('toggle-state');
 const playContainer = document.getElementById('play-container');
 const playButton = document.getElementById('play-button');
 
+const currentCardCounter = 0;
+const iconPlay = document.getElementById('icon-play');
+const textPlay = document.getElementById('text-play');
+
 const drawCards = function (category) {
   // ? getting an array of cards of certain category and shuffle them
   const cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5);
@@ -30,6 +34,9 @@ const drawCards = function (category) {
     playContainer.classList.add('visually-hidden');
   } else if (gameState.isGame === true) {
     playContainer.classList.remove('visually-hidden');
+    gameState.isStartPage = false;
+  } else if (gameState.isGame === false) {
+    playContainer.classList.add('visually-hidden');
     gameState.isStartPage = false;
   } else {
     gameState.isStartPage = false;
@@ -91,19 +98,25 @@ toggleStateLabel.addEventListener('click', (event) => {
   gameState.isGame = !gameState.isGame;
 
   if (gameState.isStartPage === false) {
-    //  ! вызываем редроукард с текущей категорией
     const currentCategory = document.querySelector('card').dataset.category;
     drawCards(currentCategory);
-    // debugger
-
-    // const currentCards = document.querySelectorAll('card')
-    // playContainer.classList.toggle('visually-hidden')
-    //  for (let card of currentCards){
-    //   //  debugger
-    //    card.childNodes[4].classList.toggle('visually-hidden')
-    //    card.classList.toggle('card-playable')
-    //  }
   }
+});
+
+playButton.addEventListener('click', () => {
+  iconPlay.classList.remove('visually-hidden');
+  textPlay.classList.add('visually-hidden');
+
+  // получаем текущую категорию
+  // получаем перемешанный массив аудио по текущей категории
+  // устанавливаем счетчик слова
+  // играем слово по счетчику
+  // меняем стиль кнопки на "повтор"
+  // если еще клик, то заново проиграть слово по счетчику
+  // устанавливаем глобальный айди проигранного слова
+  // ждем пока будет клик по карточке
+  // если клик по карточке совпадает с глобальным айди - добавлем иконку, играем мелодию выигрышаб счетчик +1, вызываем функцию с новым счетчиком 
+
 });
 
 
