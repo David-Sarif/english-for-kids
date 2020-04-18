@@ -17,9 +17,9 @@
     <header>
         <audio src="" class='vusially-hidden' id='audio'></audio>
         <audio src="" class='vusially-hidden' id='audio-alerts'></audio>
-        
+
         <div class="header-wrapper">
-            
+
             <div class="hamburger-toggle">
                 <input id="toggle-nav" type="checkbox"></input>
 
@@ -33,8 +33,8 @@
             <div class='button-play-container visually-hidden' id='play-container'>
                 <button type="button" id='play-button' class='play-button'>
                     <span class="text-play" id='text-play'>
-                    PLAY 
-                </span>
+                        PLAY
+                    </span>
                 </button>
             </div>
             <div class='button-play-container visually-hidden' id='repeat-container'>
@@ -58,30 +58,37 @@
                 <ul class='nav-list' id='nav-list'>
                     <li class='nav-element' id='categories'> <img src="./src/cards/cats/cheetah.jpg"
                             class='nav-element__img' alt=""> Main Page</li>
-                            
 
-
-                    <!-- <li class = 'nav-element' id='cats'><img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Big Cats</li>
-                    <li class = 'nav-element' id='animals'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Animals</li>
-                    <li class = 'nav-element' id='fruits'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Fruits</li>
-                    <li class = 'nav-element'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Food</li>
-                    <li class = 'nav-element'> <img src="./src/cards/cats/cheetah.jpg" class='nav-element__img' alt="">Vegetables</li> -->
-    
-    
                 </ul>
-    
+
             </nav>
         </div>
     </header>
     <main>
         <div class="score-container wrapper" id='score-container'>
-            <!-- <img src="./src/img/thumbs_down.png" class='thumbs-img' alt="">
-            <img src="./src/img/thumbs_up.png" class='thumbs-img' alt=""> -->
 
         </div>
         <div class="wrapper cards-container" id='cards-container'>
 
         </div>
+        <section class='modal-section visually-hidden' id='win-section'>
+            <div class='modal-window'>
+                <p>CONGRATULATIONS</p> <br>
+                <p> YOU WIN</p>
+                <img src="./src/img/win.png" alt="">
+                <button class='play-button' id='button-close-win'>CLOSE</button>
+
+            </div>
+        </section>
+        <section class='modal-section visually-hidden' id='lose-section'>
+            <div class='modal-window'>
+                <p>Sorry</p> <br>
+                <p> Try again next time</p>
+                <img src="./src/img/lose.jpg" alt="">
+                <button class='play-button' id='button-close-lose'>CLOSE</button>
+
+            </div>
+        </section>
     </main>
     <script src="./src/script.js" type="module"></script>
 

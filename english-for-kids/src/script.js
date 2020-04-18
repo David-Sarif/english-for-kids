@@ -5,6 +5,7 @@ const gameState = {
   isStartPage: true,
   isGameMode: false,
   isGame: false,
+  wasWrong: false,
 
 };
 
@@ -15,30 +16,27 @@ const toggleNav = document.getElementById('toggle-nav');
 const navList = document.getElementById('nav-list');
 const audio = document.getElementById('audio');
 const audioAlerts = document.getElementById('audio-alerts');
-
-const stateChanger = document.getElementById('toggleButton');
 const toggleStateLabel = document.getElementById('toggle-state');
 
 const playContainer = document.getElementById('play-container');
 const playButton = document.getElementById('play-button');
 const repeatContainer = document.getElementById('repeat-container');
-const repeatButton = document.getElementById('repeat-button');
+let guessedCards = [];
+let cards = [];
+const buttonCloseWin = document.getElementById('button-close-win');
+const winSection = document.getElementById('win-section');
+const buttonCloseLose = document.getElementById('button-close-lose');
+const loseSection = document.getElementById('lose-section');
 
 let currentCardCounter = 0;
-// const iconPlay = document.getElementById('icon-play');
-// const textPlay = document.getElementById('text-play');
-
 const thumbsUp = '<img src="./src/img/thumbs_up.png" class="thumbs-img" alt="">';
-
 const thumbsDown = '<img src="./src/img/thumbs_down.png" class="thumbs-img" alt="">';
-
 const scoreContainer = document.getElementById('score-container');
-// thumbsUp.classList.add('thumbs-img');
 
 let currentCardsArray = [];
 let currentCard = {};
 
-const playCard = function() {
+const playCard = function () {
   if (currentCardCounter >= currentCardsArray.length) {
     return;
   }
@@ -47,37 +45,53 @@ const playCard = function() {
   audio.play();
 };
 
+function playWin() {
+  audioAlerts.src = './src/mp3/win.mp3';
+  audioAlerts.play();
+  winSection.classList.remove('visually-hidden');
+}
 
-const cardCorrect = function() {
+function playLose() {
+  audioAlerts.src = './src/mp3/lose.mp3';
+  audioAlerts.play();
+  loseSection.classList.remove('visually-hidden');
+}
+
+const cardCorrect = function (chosenCard) {
   scoreContainer.innerHTML = thumbsUp + scoreContainer.innerHTML;
   audioAlerts.src = './src/mp3/correct.mp3';
   audioAlerts.play();
   currentCardCounter += 1;
+  chosenCard.classList.add('card-guessed');
+  guessedCards.push(chosenCard);
+  if (currentCardCounter === cards.length - 5) {
+    if (!gameState.wasWrong) {
+      setTimeout(playWin, 2500);
+    } else {
+      setTimeout(playLose, 2500);
+    }
+    return;
+  }
   setTimeout(playCard, 3000);
-  // alert('верно')
-}
+};
 
 
-const cardIncorrect = function() {
+const cardIncorrect = function () {
+  gameState.wasWrong = true;
   scoreContainer.innerHTML = thumbsDown + scoreContainer.innerHTML;
   audioAlerts.src = './src/mp3/wrong.mp3';
   audioAlerts.play();
-}
-
+};
 
 
 const drawCards = function (category) {
   // ? getting an array of cards of certain category and shuffle them
-  const cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5);
+  cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5);
 
   // ? if generated cards have categories category that means that we are generating main page
   // debugger
   if (cards[0].category === 'categories') {
     gameState.isStartPage = true;
-    
-    // repeatContainer.classList.add('visually-hidden');
-    
-    // textPlay.classList.remove('visually-hidden');
   } else if (gameState.isGameMode === true) {
     playContainer.classList.remove('visually-hidden');
     gameState.isGame = false;
@@ -88,7 +102,6 @@ const drawCards = function (category) {
   } else {
     gameState.isStartPage = false;
   }
-  // playContainer.classList.add('visually-hidden');
 
   repeatContainer.classList.add('visually-hidden');
   cardsContainer.innerHTML = '';
@@ -96,6 +109,8 @@ const drawCards = function (category) {
   nav.classList.remove('nav-opened');
   toggleNav.checked = false;
   currentCardCounter = 0;
+  guessedCards = [];
+  gameState.wasWrong = false;
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of cards) {
     const card = document.createElement('card');
@@ -110,12 +125,9 @@ const drawCards = function (category) {
   <div class="card-description">
   <p class="card-name__eng">${elem.nameEng}</p>
   <p class="card-name__rus visually-hidden ">${elem.nameRus}</p>
-
-  
   <span class="material-icons icon-rotate">rotate_right</span>
   </div>
   </img>`;
-
     if (!gameState.isStartPage && gameState.isGameMode) {
       card.childNodes[4].classList.toggle('visually-hidden');
       card.classList.toggle('card-playable');
@@ -124,8 +136,6 @@ const drawCards = function (category) {
     card.id = elem.name;
     cardsContainer.appendChild(card);
   }
-  
-
 };
 
 drawCards('categories');
@@ -140,19 +150,14 @@ const generateNav = function () {
     category.innerHTML = `<img src="${elem.img}" class='nav-element__img' alt="">${elem.name}`;
     navList.append(category);
   }
-
 };
 
 generateNav();
 
-
-toggleStateLabel.addEventListener('click', (event) => {
+toggleStateLabel.addEventListener('click', () => {
   gameState.isGameMode = !gameState.isGameMode;
   repeatContainer.classList.add('visually-hidden');
-  // textPlay.classList.remove('visually-hidden');
-  // scoreContainer.innerHTML = '';
   const currentCategory = document.querySelector('card').dataset.category;
-  // currentCardsArray = cardsArray.filter((card) => card.category === currentCategory).sort(() => Math.random() - 0.5);
   if (gameState.isStartPage === false) {
     drawCards(currentCategory);
   }
@@ -164,19 +169,13 @@ playButton.addEventListener('click', () => {
   const currentCategory = document.querySelector('card').dataset.category;
   gameState.isGame = true;
   if (currentCardCounter === 0) {
-    currentCardsArray = cardsArray.filter((card) => card.category === currentCategory).sort(() => Math.random() - 0.5);
-    // получаем категорию
-    // const currentCategory = document.querySelector('card').dataset.category;
-    // собираем массив этой категории
-    // currentCardsArray = cardsArray.filter((card) => card.category === currentCategory).sort(() => Math.random() - 0.5);
+    currentCardsArray = cardsArray.filter((card) => card.category === currentCategory)
+      .sort(() => Math.random() - 0.5);
     currentCard = currentCardsArray[currentCardCounter];
     audio.src = currentCard.audio;
     audio.play();
-
   }
 });
-
-
 
 repeatContainer.addEventListener('click', () => {
   audio.play();
@@ -186,10 +185,11 @@ cardsContainer.addEventListener('click', (event) => {
   if (event.target.closest('card')) {
     const chosenCard = event.target.closest('card');
     // ? if it is start page
-
+    if (guessedCards.includes(chosenCard)) {
+      return;
+    }
     if (gameState.isStartPage) {
       drawCards(chosenCard.id);
-
       return;
     }
     // ? flip card
@@ -197,7 +197,7 @@ cardsContainer.addEventListener('click', (event) => {
       chosenCard.classList.add('rotate-card');
       chosenCard.childNodes[4].childNodes[1].classList.add('visually-hidden');
       chosenCard.childNodes[4].childNodes[3].classList.remove('visually-hidden');
-      chosenCard.addEventListener('mouseleave', (event) => {
+      chosenCard.addEventListener('mouseleave', () => {
         chosenCard.classList.remove('rotate-card');
         chosenCard.childNodes[4].childNodes[1].classList.remove('visually-hidden');
         chosenCard.childNodes[4].childNodes[3].classList.add('visually-hidden');
@@ -206,15 +206,14 @@ cardsContainer.addEventListener('click', (event) => {
     }
     // ? Playin audio already
     if (!gameState.isStartPage && !gameState.isGameMode) {
+      // ? playing audio for train mode
       chosenCard.childNodes[0].play();
     }
 
     if (!gameState.isStartPage && gameState.isGameMode && gameState.isGame) {
-      if (chosenCard.id === currentCard.name)
-      {
-        cardCorrect();
-      }
-      else {
+      if (chosenCard.id === currentCard.name) {
+        cardCorrect(chosenCard);
+      } else {
         cardIncorrect();
       }
     }
@@ -227,6 +226,15 @@ nav.addEventListener('click', (event) => {
   }
 });
 
-toggleNavLabel.addEventListener('click', (event) => {
+toggleNavLabel.addEventListener('click', () => {
   nav.classList.toggle('nav-opened');
 });
+
+buttonCloseWin.onclick = () => {
+  winSection.classList.add('visually-hidden');
+  drawCards('categories');
+};
+buttonCloseLose.onclick = () => {
+  loseSection.classList.add('visually-hidden');
+  drawCards('categories');
+};
