@@ -66,7 +66,7 @@ function cardCorrect(chosenCard) {
   currentCardCounter += 1;
   chosenCard.classList.add('card-guessed');
   guessedCards.push(chosenCard);
-  if (currentCardCounter === cards.length - 5) {
+  if (currentCardCounter === cards.length) {
     if (!gameState.wasWrong) {
       setTimeout(playWin, 2500);
     } else {
