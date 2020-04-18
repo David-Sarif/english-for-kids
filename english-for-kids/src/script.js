@@ -136,6 +136,15 @@ const drawCards = function (category) {
     card.id = elem.name;
     cardsContainer.appendChild(card);
   }
+
+  const navElements = document.querySelectorAll('.nav-element');
+  navElements.forEach((navElem) => {
+    navElem.classList.remove('nav-element-active');
+    if (navElem.id === category) {
+      navElem.classList.add('nav-element-active');
+    }
+  });
+
 };
 
 drawCards('categories');

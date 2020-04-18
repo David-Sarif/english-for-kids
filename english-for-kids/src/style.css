@@ -238,7 +238,6 @@ header{
     border-radius: 3px;
     background-color: #2d303a;
     margin-top: 8px;
-    /* padding-top: 8px; */
     transition: all 0.3s ease-in-out;
   }
 #toggle-nav:checked + .hamburger .top-bun {
@@ -258,8 +257,6 @@ header{
   }
 nav{
   display: block;
-  
-    /* padding-top: 100px; */
     padding-left: 20px;
     padding-right: 20px;
   width: 350px;
@@ -271,14 +268,8 @@ nav{
     min-height: 100%;
     max-height: 200%;
     background-color: #2d303a;
-    /* display: none; */
     z-index: 4;
-    /* 
-    animation: width 2s; */
     transition: left 2s;
-    /* box-sizing: border-box;
-    display: flex;
-    align-items: stretch; */
     padding-bottom: auto;
     
 }
@@ -300,8 +291,13 @@ nav{
 .nav-element:hover{
   border: 2px solid red;
   color:red;
-
 }
+
+.nav-element-active{
+  border: 2px solid red;
+  color:red;
+}
+
 .nav-list{
     display: flex;
     flex-direction: column;
