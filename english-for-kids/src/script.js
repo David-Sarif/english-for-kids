@@ -234,7 +234,8 @@ nav.addEventListener('click', (event) => {
   }
 });
 document.addEventListener('click', (event) => {
-  if (!event.target.closest('.hamburger-toggle')) {
+  if (!event.target.closest('.hamburger-toggle') && !event.target.closest('nav')) {
+    console.log(event.target.closest('.nav'))
     nav.classList.remove('nav-opened');
     toggleNav.checked = false;
   }
