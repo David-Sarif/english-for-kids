@@ -355,6 +355,10 @@ box-shadow:  3px 7px 10px rgba(0, 0, 0, 0.4);
 .card-guessed{
   opacity: 0.5;
   cursor: none;
+  box-shadow: none;
+}
+.card-guessed:hover{
+  box-shadow: none;
 }
 .modal-section{
   position: fixed;
