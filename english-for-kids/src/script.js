@@ -75,14 +75,12 @@ const cardCorrect = function (chosenCard) {
   setTimeout(playCard, 3000);
 };
 
-
 const cardIncorrect = function () {
   gameState.wasWrong = true;
   scoreContainer.innerHTML = thumbsDown + scoreContainer.innerHTML;
   audioAlerts.src = './src/mp3/wrong.mp3';
   audioAlerts.play();
 };
-
 
 const drawCards = function (category) {
   // ? getting an array of cards of certain category and shuffle them
@@ -111,6 +109,7 @@ const drawCards = function (category) {
   currentCardCounter = 0;
   guessedCards = [];
   gameState.wasWrong = false;
+  nav.style.height = `${document.body.scrollHeight}px`;
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of cards) {
     const card = document.createElement('card');
@@ -234,8 +233,15 @@ nav.addEventListener('click', (event) => {
     drawCards(chosenCard.id);
   }
 });
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.hamburger-toggle')) {
+    nav.classList.remove('nav-opened');
+    toggleNav.checked = false;
+  }
+});
 
 toggleNavLabel.addEventListener('click', () => {
+  nav.style.height = `${document.body.scrollHeight}px`;
   nav.classList.toggle('nav-opened');
 });
 
