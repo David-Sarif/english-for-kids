@@ -297,6 +297,11 @@ nav{
     border-radius: 20px;
     text-transform: capitalize;
 }
+.nav-element:hover{
+  border: 2px solid red;
+  color:red;
+
+}
 .nav-list{
     display: flex;
     flex-direction: column;
@@ -314,6 +319,7 @@ nav{
     border: 2px solid wheat;
     margin-right: 10px;
 }
+
 
 .play-button{
   width: 100px;
