@@ -60,19 +60,16 @@
                             class='nav-element__img' alt=""> Main Page</li>
 
                 </ul>
-
             </nav>
         </div>
     </header>
     <main>
         <div class="score-container wrapper" id='score-container'>
-
         </div>
         <div class="wrapper cards-container" id='cards-container'>
-
         </div>
         <section class='modal-section visually-hidden' id='win-section'>
-            <div class='modal-window'>
+            <div class='modal-window window-win'>
                 <p>CONGRATULATIONS</p> <br>
                 <p> YOU WIN</p>
                 <img src="./src/img/win.png" alt="">
@@ -81,9 +78,8 @@
             </div>
         </section>
         <section class='modal-section visually-hidden' id='lose-section'>
-            <div class='modal-window'>
-                <p>Sorry</p> <br>
-                <p> Try again next time</p>
+            <div class='modal-window window-lose'>
+                <p class="lose-score" id='lose-score'></p>
                 <img src="./src/img/lose.jpg" alt="">
                 <button class='play-button' id='button-close-lose'>CLOSE</button>
 

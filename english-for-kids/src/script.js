@@ -5,7 +5,7 @@ const gameState = {
   isStartPage: true,
   isGameMode: false,
   isGame: false,
-  wasWrong: false,
+  wasWrong: 0,
 
 };
 
@@ -36,14 +36,14 @@ const scoreContainer = document.getElementById('score-container');
 let currentCardsArray = [];
 let currentCard = {};
 
-const playCard = function () {
+function playCard() {
   if (currentCardCounter >= currentCardsArray.length) {
     return;
   }
   currentCard = currentCardsArray[currentCardCounter];
   audio.src = currentCard.audio;
   audio.play();
-};
+}
 
 function playWin() {
   audioAlerts.src = './src/mp3/win.mp3';
@@ -55,9 +55,11 @@ function playLose() {
   audioAlerts.src = './src/mp3/lose.mp3';
   audioAlerts.play();
   loseSection.classList.remove('visually-hidden');
+  const loseScore = document.getElementById('lose-score');
+  loseScore.innerText = `You were wrong ${gameState.wasWrong} times`;
 }
 
-const cardCorrect = function (chosenCard) {
+function cardCorrect(chosenCard) {
   scoreContainer.innerHTML = thumbsUp + scoreContainer.innerHTML;
   audioAlerts.src = './src/mp3/correct.mp3';
   audioAlerts.play();
@@ -73,16 +75,24 @@ const cardCorrect = function (chosenCard) {
     return;
   }
   setTimeout(playCard, 3000);
-};
-
-const cardIncorrect = function () {
-  gameState.wasWrong = true;
+}
+function resetStates() {
+  repeatContainer.classList.add('visually-hidden');
+  cardsContainer.innerHTML = '';
+  scoreContainer.innerHTML = '';
+  nav.classList.remove('nav-opened');
+  toggleNav.checked = false;
+  currentCardCounter = 0;
+  guessedCards = [];
+  gameState.wasWrong = 0;
+}
+function cardIncorrect() {
+  gameState.wasWrong += 1;
   scoreContainer.innerHTML = thumbsDown + scoreContainer.innerHTML;
   audioAlerts.src = './src/mp3/wrong.mp3';
   audioAlerts.play();
-};
-
-const drawCards = function (category) {
+}
+function drawCards(category) {
   // ? getting an array of cards of certain category and shuffle them
   cards = cardsArray.filter((card) => card.category === category).sort(() => Math.random() - 0.5);
 
@@ -101,19 +111,10 @@ const drawCards = function (category) {
     gameState.isStartPage = false;
   }
 
-  repeatContainer.classList.add('visually-hidden');
-  cardsContainer.innerHTML = '';
-  scoreContainer.innerHTML = '';
-  nav.classList.remove('nav-opened');
-  toggleNav.checked = false;
-  currentCardCounter = 0;
-  guessedCards = [];
-  gameState.wasWrong = false;
-  nav.style.height = `${document.body.scrollHeight}px`;
+  resetStates();
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of cards) {
     const card = document.createElement('card');
-    // debugger
     card.dataset.category = elem.category;
     if (elem.category === 'categories') {
       card.classList.add('categories_card');
@@ -143,12 +144,10 @@ const drawCards = function (category) {
       navElem.classList.add('nav-element-active');
     }
   });
-
-};
-
+}
 drawCards('categories');
 
-const generateNav = function () {
+function generateNav() {
   const categories = cardsArray.filter((card) => card.category === 'categories');
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of categories) {
@@ -158,7 +157,7 @@ const generateNav = function () {
     category.innerHTML = `<img src="${elem.img}" class='nav-element__img' alt="">${elem.name}`;
     navList.append(category);
   }
-};
+}
 
 generateNav();
 
@@ -235,14 +234,16 @@ nav.addEventListener('click', (event) => {
 });
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.hamburger-toggle') && !event.target.closest('nav')) {
-    console.log(event.target.closest('.nav'))
+    console.log(event.target.closest('.nav'));
     nav.classList.remove('nav-opened');
     toggleNav.checked = false;
   }
 });
 
 toggleNavLabel.addEventListener('click', () => {
-  nav.style.height = `${document.body.scrollHeight}px`;
+  if (nav.offsetHeight < document.body.scrollHeight) {
+    nav.style.height = `${document.body.scrollHeight}px`;
+  }
   nav.classList.toggle('nav-opened');
 });
 
